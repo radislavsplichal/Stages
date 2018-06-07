@@ -1,7 +1,12 @@
 <?php 
-include 'config.php';
-include 'datbaseHandler.php';
-include 'Stage.php';
+
+//include all the core classes for the app to be able to run
+foreach (glob("classes/*.php") as $filename)
+{
+    include $filename;
+}
+
+test();
 
 
 $header = '<!-- Latest compiled and minified CSS -->
