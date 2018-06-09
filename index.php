@@ -1,12 +1,12 @@
 <?php 
-
+session_start();
 //include all the core classes for the app to be able to run
 foreach (glob("classes/*.php") as $filename)
 {
     include $filename;
 }
 
-test();
+//test();
 
 
 $header = '<!-- Latest compiled and minified CSS -->
@@ -23,7 +23,7 @@ If you are strugling with this or you can motivate yourself just fine, you shoul
 </p>";
     
 $CreateStageForm = '
-<form class="form-horizontal">
+<form class="form-horizontal" action="saveObject.php" method="POST">
 <fieldset>
 
 <!-- Form Name -->
@@ -33,7 +33,7 @@ $CreateStageForm = '
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Title</label>  
   <div class="col-md-4">
-  <input id="textinput" name="textinput" type="text" placeholder="Name of the stage" class="form-control input-md" required="">
+  <input id="title" name="title" type="text" placeholder="Name of the stage" class="form-control input-md" required="">
     
   </div>
 </div>
@@ -42,7 +42,7 @@ $CreateStageForm = '
 <div class="form-group">
   <label class="col-md-4 control-label" for="Description">Description</label>
   <div class="col-md-4">                     
-    <textarea class="form-control" id="Description" name="Description"></textarea>
+    <textarea class="form-control" id="description" name="description"></textarea>
   </div>
 </div>
 
@@ -50,8 +50,8 @@ $CreateStageForm = '
 <div class="form-group">
   <label class="col-md-4 control-label" for="button1id">Stage</label>
   <div class="col-md-8">
-    <button id="button1id" name="button1id" class="btn btn-success">Save</button>
-    <button id="clearStage" name="clearStage" class="btn btn-danger">Clear</button>
+    <button type"submit" id="button1id" name="button1id" class="btn btn-success">Save</button>
+    <button id="clearStage" name="clearStage" class="btn btn-danger">Clear</button></input>
   </div>
 </div>
 

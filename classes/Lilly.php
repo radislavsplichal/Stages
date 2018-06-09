@@ -30,6 +30,26 @@ class Lilly {
 			return $responseArray = $arrayName = array('responseMessage' => $response,'responseContent' => $result);
 		}
 	}
+	private function prepareArguments($arguments) {
+	    $argumentString = '';
+	    foreach ($arguments as $value) {
+	        $argumentString = $argumentString.','.$value;
+	    }
+	    $argumentString = substr($argumentString,1);
+	    return $argumentString;
+	    
+	}
+	
+	private function prepareValues($values) {
+	    $valueString = '';
+	    foreach ($values as $value) {
+	        $valueString = $valueString.',\''.$value.'\'';
+	    }
+	    $valueString = substr($valueString,1);
+	    return $valueString;
+	    
+	}
+	
 	public function createObject($type,$objectName,$arguments) {
 		$this->establishConnection();
 		// values need to be separated by "','" and concatanated by .
@@ -39,8 +59,10 @@ class Lilly {
 	}
 	public function saveObject ($type,$arguments,$values) {
 		$this->establishConnection();
+		$argumentString = $this->prepareArguments($arguments);
+		$valuesString = $this->prepareValues($values);
 		// values need to be separated by "','" and concatanated by .
-		$sql= "INSERT INTO $type ($arguments) VALUES ('$values');";
+		$sql= "INSERT INTO $type ($argumentString) VALUES ('$valuesString');";
 		$this->executeQuerry($sql);
 	}
 	public function deleteObject($id,$type){
